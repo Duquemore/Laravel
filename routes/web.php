@@ -1,29 +1,20 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
+
 Route::get('/', function (){
     return 'Home';
 });
 
-Route::get('/usuarios', function(){
-  return 'Usuarios';
-});
+Route::get('/usuarios', [UserController::class, 'index']);
 
 // Route::get('/usuarios/{id}', function($id){
 //   return "Mostrando detalle del usuario: {$id}";
 // })->where('id', '[0-9]+');
 
-Route::get('/usuarios/{id}', function($id){
-  return "Mostrando detalle del usuario: {$id}";
-})->where('id', '\d+');
+Route::get('/usuarios/{id}', [UserController::class, 'detail'])->where('id', '\d+');
 
-Route::get('/usuarios/nuevo', function(){
-  return "Crear Nuevo Usuario";
-});
+Route::get('/usuarios/nuevo', [UserController::class, 'crear']);
 
-Route::get('/saludo/{name}/{lastname?}', function($name, $lastname = null){
-  if($lastname){
-    return "Hola {$name} {$lastname}";    
-  } else {
-    return "Hola {$name}, no tienes apodo";
-  }
-})->where('name', '\d+');
+Route::get('/saludo/{name}/{lastname?}', [WelcomeController::class, 'hello'])->where('name', '\d+');

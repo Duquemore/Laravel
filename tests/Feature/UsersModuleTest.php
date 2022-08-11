@@ -10,20 +10,19 @@ class UsersModuleTest extends TestCase
 {
     function test_usuarios_200()
     {
-        $response = $this->get('/usuarios');
-
-        $response->assertStatus(200);
+        $response = $this->get('/usuarios')
+                         ->assertStatus(200)
+                         ->assertSee('Joel')
+                         ->assertSee('neita');
     }
     function test_usuarios_5_200()
     {
-        $response = $this->get('/usuarios/5');
-
-        $response->assertStatus(200);
+        $response = $this->get('/usuarios/5')
+                         ->assertStatus(200);
     }
     function test_usuarios_nuevo_200()
     {
-        $response = $this->get('/usuarios/nuevo');
-
-        $response->assertStatus(200);
+        $response = $this->get('/usuarios/nuevo')
+                         ->assertStatus(200);
     }
 }
