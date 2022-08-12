@@ -30,7 +30,7 @@ class UserController extends Controller
             'linda',
         ];
         
-        return view('users', compact('users', 'neas'));
+        return view('users.index', compact('users', 'neas'));
         // otras formas
         // return view('users')->with('users', $users)
         //                     ->with('neas', $neas);
@@ -40,7 +40,7 @@ class UserController extends Controller
      
     public function detail($id)
     {
-        return "Mostrando detalle del usuario: {$id}";
+        return view('users.show',compact('id'));
     }
 
     public function crear()
