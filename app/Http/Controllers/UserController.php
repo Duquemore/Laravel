@@ -8,15 +8,20 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = [
-            'Joel',
-            'Ellie',
-            'Tess',
-            'Sampeseste',
-            'mi pez',
-            'neita',
-            'pana'
-        ];
+        if(request()->has('empty')){
+            $users = [];
+        } else {
+            $users = [
+                'Joel',
+                'Ellie',
+                'Tess',
+                'Sampeseste',
+                'mi pez',
+                'neita',
+                'pana'
+            ];
+        }
+
         $neas = [
             'ana',
             'mariana',
@@ -24,6 +29,7 @@ class UserController extends Controller
             'guadalupe',
             'linda',
         ];
+        
         return view('users', compact('users', 'neas'));
         // otras formas
         // return view('users')->with('users', $users)

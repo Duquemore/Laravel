@@ -15,6 +15,12 @@ class UsersModuleTest extends TestCase
                          ->assertSee('Joel')
                          ->assertSee('neita');
     }
+    function test_no_hay_usuarios_200()
+    {
+        $response = $this->get('/usuarios?empty')
+                         ->assertStatus(200)
+                         ->assertSee('No hay usuarios registrados.');
+    }
     function test_usuarios_5_200()
     {
         $response = $this->get('/usuarios/5')
