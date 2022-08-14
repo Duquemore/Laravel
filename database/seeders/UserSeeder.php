@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\Profession;
 
 class UserSeeder extends Seeder
 {
@@ -63,25 +64,20 @@ class UserSeeder extends Seeder
         // ]);
 
         //Another way using Eloquent ORM
+
+        $professionid = Profession::where('title', 'Desarrollador back-end')->value('id');     
+
         User::create([
             'name' => 'alvaro diaz',
             'email' => 'alvaro@gmail.com',
             'password' => bcrypt('123456'),
-            'profession_id' =>  1,
+            'profession_id' =>  $professionid,
         ]);
         
-        User::create([
-            'name' => 'lizeth gomez',
-            'email' => 'lizeth@gmail.com',
-            'password' => bcrypt('123456'),
-            'profession_id' => 2,
+        User::factory()->create([
+            'profession_id' => $professionid,
         ]);
-        
-        User::create([
-            'name' => 'lucas roman',
-            'email' => 'luro@gmail.com',
-            'password' => bcrypt('123456'),
-            'profession_id' => 3,
-        ]);
+
+        User::factory(8)->create();
     }
 }

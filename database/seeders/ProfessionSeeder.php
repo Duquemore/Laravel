@@ -42,5 +42,7 @@ class ProfessionSeeder extends Seeder
         Profession::create([
             'title' => 'Diseñador web',
         ]);
+
+        Profession::factory(7)->create();
     }
 }

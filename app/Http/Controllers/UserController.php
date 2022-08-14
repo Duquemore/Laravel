@@ -3,34 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function index()
     {
-        if(request()->has('empty')){
-            $users = [];
-        } else {
-            $users = [
-                'Joel',
-                'Ellie',
-                'Tess',
-                'Sampeseste',
-                'mi pez',
-                'neita',
-                'pana'
-            ];
-        }
+        // Using Laravel query builder
+        // $users = DB::table('users')->get();
 
-        $neas = [
-            'ana',
-            'mariana',
-            'nina',
-            'guadalupe',
-            'linda',
-        ];
+        //Using Eloquent
+        $users = User::all();
+        return view('users.index', compact('users'));
         
-        return view('users.index', compact('users', 'neas'));
         // otras formas
         // return view('users')->with('users', $users)
         //                     ->with('neas', $neas);
