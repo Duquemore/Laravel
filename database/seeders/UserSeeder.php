@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class UserSeeder extends Seeder
         // $professions = DB::select('SELECT * FROM professions WHERE title = ? LIMIT 0,1', ['Desarrollador back-end']);
         // $professions = DB::select('SELECT * FROM professions LIMIT 0,1');
 
-        // $Another ways with laravel
+        //Another ways with query builder
         // $profession = DB::table('professions')->select('id')->take(1)->get()->first();
         // $profession = DB::table('professions')->select('id')->first();
 
@@ -39,26 +40,48 @@ class UserSeeder extends Seeder
         //     'profession_id' => $professionid
         // ]);
 
-        DB::table('users')->insert([
+        //Another ways with query builder
+        // DB::table('users')->insert([
+        //     'name' => 'alvaro diaz',
+        //     'email' => 'alvaro@gmail.com',
+        //     'password' => bcrypt('123456'),
+        //     'profession_id' => '1',
+        // ]);
+        
+        // DB::table('users')->insert([
+        //     'name' => 'lizeth gomez',
+        //     'email' => 'lizeth@gmail.com',
+        //     'password' => bcrypt('123456'),
+        //     'profession_id' => '2',
+        // ]);
+        
+        // DB::table('users')->insert([
+        //     'name' => 'lucas roman',
+        //     'email' => 'luro@gmail.com',
+        //     'password' => bcrypt('123456'),
+        //     'profession_id' => '3',
+        // ]);
+
+        //Another way using Eloquent ORM
+        User::create([
             'name' => 'alvaro diaz',
             'email' => 'alvaro@gmail.com',
             'password' => bcrypt('123456'),
-            'profession_id' => '1',
+            'profession_id' => 1,
         ]);
-
-        DB::table('users')->insert([
+        
+        User::create([
             'name' => 'lizeth gomez',
             'email' => 'lizeth@gmail.com',
             'password' => bcrypt('123456'),
-            'profession_id' => '2',
+            'profession_id' => 2,
         ]);
-
-        DB::table('users')->insert([
+        
+        User::create([
             'name' => 'lucas roman',
             'email' => 'luro@gmail.com',
             'password' => bcrypt('123456'),
-            'profession_id' => '3',
+            'profession_id' => 3,
         ]);
-      
     }
 }
