@@ -7,19 +7,16 @@
         <br>
         <h1>Usuarios</h1>
         <hr>
-        @if (! empty($users))
         <ul>
-            @foreach ($users as $user)
-            <li>{{$user->id}} {{$user->name}} {{$user->email}}</li>
-            @endforeach
+            @forelse ($users as $user)
+                <li>{{$user->name}}, {{$user->email}}</li>
+            @empty
+                <li>No hay usuarios registrados.</li>     
+            @endforelse
         </ul>    
-        @else
-        <p>No hay usuarios registrados.</p>
-        @endif
     </div>
 @endsection
 
 @section('sidebar')
-{{-- @parent
-<h2>barrita golosa</h2> --}}
+    @parent
 @endsection
