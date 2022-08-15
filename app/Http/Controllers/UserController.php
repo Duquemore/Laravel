@@ -22,16 +22,20 @@ class UserController extends Controller{
         // return view('users', ['users' => $users, 'neas' => $neas]);
     }
      
-    public function detail($id){
-        $user = User::findOrFail($id);
-
-        // $user = User::find($id);
-        //Another way
-        // if($user == null){
-        //     return response()->view('404', [], 404);
-        // }
-        return view('users.show', compact('user'));
+    public function detail(User $user){
         
+        //Another way
+        // $user = User::findOrFail($id);
+        // return view('users.show', compact('user'));
+
+        //Another way
+        // $user = User::find($id);
+        // if($user == null){
+            //     return response()->view('404', [], 404);
+            // }
+            // return view('users.show', compact('user'));
+        
+        return view('users.show', compact('user'));
     }
 
     public function new(){
