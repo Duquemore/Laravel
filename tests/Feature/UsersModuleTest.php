@@ -32,10 +32,10 @@ class UsersModuleTest extends TestCase{
     }
     function test_usuarios_detail_200(){
         $user = User::factory(User::class)->create([
-            'name' => 'Debaran'
+            'name' => 'Debaran',
         ]);
 
-        $this->get('/usuarios/' .$user->id)
+        $this->get("/usuarios/{$user->id}")
             ->assertStatus(200)
             ->assertSee('Debaran');
     }

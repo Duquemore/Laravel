@@ -23,12 +23,8 @@ class UserController extends Controller{
     }
      
     public function detail($id){
-        $users = User::find($id);
-        $name = $users->name;
-        $email = $users->email;
-        $profession = $users->profession;
-        $is_admin = $users->is_admin;
-        return view('users.show', compact('name', 'email', 'profession', 'is_admin'));
+        $user = User::find($id);
+        return view('users.show', compact('user'));
     }
 
     public function new(){
