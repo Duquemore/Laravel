@@ -67,4 +67,23 @@ class UsersModuleTest extends TestCase{
             'password' => '123456',
         ]);
     }
+    
+    function test_nombre_requerido_form_usr_nuevo(){
+        $this->from('/usuarios/crear')
+            ->post('/usuarios', [
+                'user' => '',
+                'email' => 'debaran@gmail.com',
+                'password' => '123456',
+        ])->assertRedirect(route('users.create'))
+          ->assertSessionHasErrors(['name' => 'El campo nombre es obligatorio']);
+
+        $this->assertEquals(0, User::count());
+
+        // Another way for assertEquals
+        // $this->assertDatabaseMissing('users', [
+        //     'email' => 'debaran@gmail.com',
+        // ]);
+    }
+
+
 }

@@ -43,10 +43,21 @@ class UserController extends Controller{
     }
 
     public function new(){
-        $data = request()->all();
+        $data = request()->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'El campo nombre es obligatorio',
+        ]);
         if(User::find($data['email']) == $data['email']){
-            return('oe manito asi no es');
+            return redirect()->route('users.create');
         }else{
+            // Another way
+            // if (empty($data['name'])) {
+            //     return redirect()->route('users.create')->withErrors([
+            //         'name' => 'El campo es obligatorio'
+            //     ]);
+            // }
+            
             User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
