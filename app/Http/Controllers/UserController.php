@@ -43,7 +43,13 @@ class UserController extends Controller{
     }
 
     public function new(){
-       return "Nuevo usuario creado";
+        $data = request()->all();
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+       return redirect()->route('users');
     }
 
 }

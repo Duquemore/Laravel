@@ -52,4 +52,19 @@ class UsersModuleTest extends TestCase{
         $this->get('/usuarios/nuevo')
             ->assertStatus(200);
     }
+
+    function test_crear_usuario_nuevo_200(){
+        $this->post('/usuarios', [
+            'name' => 'Debaran',
+            'email' => 'debaran@gmail.com',
+            'password' => '123456',
+
+        ])->assertRedirect(route('users'));
+            
+        $this->assertCredentials([
+            'name' => 'Debaran',
+            'email' => 'debaran@gmail.com',
+            'password' => '123456',
+        ]);
+    }
 }

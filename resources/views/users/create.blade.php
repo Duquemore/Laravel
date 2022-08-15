@@ -5,7 +5,7 @@
     <br>
     <br>
     <h1>Crear nuevo usuario</h1>
-    <form action="nuevo" method="POST">
+    <form action="{{ url('/usuarios') }}" method="POST">
         @csrf
         <h2>Nombre 
             <input type="text">
