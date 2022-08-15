@@ -15,6 +15,7 @@ class UsersModuleTest extends TestCase{
         User::factory()->create([
             'name' => 'Joel',
         ]);
+        
         User::factory()->create([
             'name' => 'neita',
         ]);
@@ -24,21 +25,29 @@ class UsersModuleTest extends TestCase{
             ->assertSee('Joel')
             ->assertSee('neita');
     }
+
     function test_no_hay_usuarios_200(){
         User::all()->each->delete(); 
         $this->get('/usuarios')
-            ->assertStatus(200)
             ->assertSee('No hay usuarios registrados.');
     }
+
     function test_usuarios_detail_200(){
         $user = User::factory(User::class)->create([
             'name' => 'Debaran',
         ]);
 
         $this->get("/usuarios/{$user->id}")
-            ->assertStatus(200)
             ->assertSee('Debaran');
     }
+
+    function test_usuarios_detail_404(){
+        $this->get('usuarios/d')
+            ->assertStatus(404)
+            ->assertSee('404');
+
+    }
+
     function test_usuarios_nuevo_200(){
         $this->get('/usuarios/nuevo')
             ->assertStatus(200);

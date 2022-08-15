@@ -23,8 +23,15 @@ class UserController extends Controller{
     }
      
     public function detail($id){
-        $user = User::find($id);
+        $user = User::findOrFail($id);
+
+        // $user = User::find($id);
+        //Another way
+        // if($user == null){
+        //     return response()->view('404', [], 404);
+        // }
         return view('users.show', compact('user'));
+        
     }
 
     public function new(){
