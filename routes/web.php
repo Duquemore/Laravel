@@ -13,8 +13,10 @@ Route::get('/usuarios', [UserController::class, 'index'])->name('users');
 //   return "Mostrando detalle del usuario: {$id}";
 // })->where('id', '[0-9]+');
 
-Route::get('/usuarios/nuevo', [UserController::class, 'new'])->name('users.create');
-
 Route::get('/usuarios/{user}', [UserController::class, 'detail'])->where('user', '\d+')->name('users.show');
+
+Route::get('/usuarios/crear', [UserController::class, 'create'])->name('users.create');
+
+Route::post('/usuarios/nuevo', [UserController::class, 'new'])->name('users.new');
 
 Route::get('/saludo/{name}/{lastname?}', [WelcomeController::class, 'hello'])->where('name', '\d+');
