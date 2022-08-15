@@ -27,15 +27,20 @@ class UsersModuleTest extends TestCase{
     function test_no_hay_usuarios_200(){
         User::all()->each->delete(); 
         $this->get('/usuarios')
-        ->assertStatus(200)
-        ->assertSee('No hay usuarios registrados.');
+            ->assertStatus(200)
+            ->assertSee('No hay usuarios registrados.');
     }
-    function test_usuarios_5_200(){
-        $response = $this->get('/usuarios/5')
-                         ->assertStatus(200);
+    function test_usuarios_detail_200(){
+        $user = User::factory(User::class)->create([
+            'name' => 'Debaran'
+        ]);
+
+        $this->get('/usuarios/' .$user->id)
+            ->assertStatus(200)
+            ->assertSee('Debaran');
     }
     function test_usuarios_nuevo_200(){
-        $response = $this->get('/usuarios/nuevo')
-                         ->assertStatus(200);
+        $this->get('/usuarios/nuevo')
+            ->assertStatus(200);
     }
 }

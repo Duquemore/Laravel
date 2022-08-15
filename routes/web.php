@@ -13,8 +13,8 @@ Route::get('/usuarios', [UserController::class, 'index']);
 //   return "Mostrando detalle del usuario: {$id}";
 // })->where('id', '[0-9]+');
 
-Route::get('/usuarios/{id}', [UserController::class, 'detail'])->where('id', '\w+');
+Route::get('/usuarios/{id}', [UserController::class, 'detail'])->where('id', '\d+');
 
-Route::get('/usuarios/nuevo', [UserController::class, 'crear']);
+Route::get('/usuarios/nuevo', [UserController::class, 'new']);
 
 Route::get('/saludo/{name}/{lastname?}', [WelcomeController::class, 'hello'])->where('name', '\d+');
