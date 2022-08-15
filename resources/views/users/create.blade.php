@@ -7,18 +7,18 @@
     <h1>Crear nuevo usuario</h1>
     <form action="{{ url('/usuarios') }}" method="POST">
         @csrf
-        <h2>Nombre 
-            <input type="text">
-        </h2>
-        <h2>Contraseña 
-            <input type="password">
-        </h2>
-        <h2>Correo 
-            <input type="email">
-        </h2>
-        <h2>Profesion 
-            <input type="text">
-        </h2>
+        <label>Nombre 
+            <input type="text" name="name">
+        </label>
+        <br>
+        <label>Email 
+            <input type="email" name="email">
+        </label>
+        <br>
+        <label>Contraseña 
+            <input type="password" name="password">
+        </label>
+        <br>
         <button type="submit">
             Enviar
         </button>

@@ -44,12 +44,16 @@ class UserController extends Controller{
 
     public function new(){
         $data = request()->all();
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-       return redirect()->route('users');
+        if(User::find($data['email']) == $data['email']){
+            return('oe manito asi no es');
+        }else{
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+            return redirect()->route('users');
+        }
     }
 
 }
