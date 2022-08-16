@@ -19,4 +19,8 @@ Route::get('/usuarios/crear', [UserController::class, 'create'])->name('users.cr
 
 Route::post('/usuarios', [UserController::class, 'new'])->name('users.new');
 
+Route::get('/usuarios/{user}/editar/', [UserController::class, 'edit'])->where('user', '\d+')->name('users.edit');
+
+Route::put('/usuarios', [UserController::class, 'new'])->name('users.new');
+
 Route::get('/saludo/{name}/{lastname?}', [WelcomeController::class, 'hello'])->where('name', '\d+');

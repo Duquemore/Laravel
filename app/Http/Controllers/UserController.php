@@ -23,7 +23,6 @@ class UserController extends Controller{
     }
      
     public function detail(User $user){
-        
         //Another way
         // $user = User::findOrFail($id);
         // return view('users.show', compact('user'));
@@ -68,5 +67,24 @@ class UserController extends Controller{
         // }
     }
 
+    public function edit(User $user){
+        // $data = request()->validate([
+        //     'name' => 'required',
+        //     'email' => ['required','email', 'unique:users,email'],
+        //     'password' => 'required',
+        // ], [
+        //     'name.required' => 'El campo nombre es obligatorio',
+        //     'email.required' => 'El campo email es obligatorio',
+        //     'password.required' => 'El campo password es obligatorio',
+        // ]);
+        
+        // User::update([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => bcrypt($data['password'])
+        // ]);
+        // return redirect()->route('users');
+        return view('users.edit', compact('user'));
+    }
 }
  

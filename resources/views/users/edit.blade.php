@@ -4,22 +4,13 @@
     <br>
     <br>
     <br>
-    <h1>Crear nuevo usuario</h1>
-
-    {{-- errors general way 
-    @if($errors->any())
-    @foreach ( $errors->all() as $error)
-        <ul>
-            <li>{{ $error }}</li>
-        </ul>
-    @endforeach
-    @endif --}}
+    <h1>Editar usuario existente</h1>
 
     <form action="{{ url(route('users')) }}" method="POST">
         @csrf
         <label>
             Nombre 
-            <input type="text" name="name" value="{{ old('name') }}">
+            <input type="text" name="name" value="{{ old('name', $user->name) }}">
         </label>
         @if ($errors->has('name'))
             <p>{{ $errors->first('name') }}</p>
@@ -27,7 +18,7 @@
         <br>
         <label>
             Email 
-            <input type="email" name="email" value="{{ old('email') }}">
+            <input type="email" name="email" value="{{ old('email', $user->email) }}">
         </label>
         @if ($errors->has('email'))
             <p>{{ $errors->first('email') }}</p>
@@ -35,14 +26,14 @@
         <br>
         <label>
             Contraseña 
-            <input type="password" name="password">
+            <input type="password" name="password" value="{{ old('password', $user->password) }}">
         </label>
         @if ($errors->has('password'))
             <p>{{ $errors->first('password') }}</p>
         @endif
         <br>
         <button type="submit">
-            Crear
+            Actualizar
         </button>
     </form>
 @endsection

@@ -12,6 +12,7 @@
                 <li>
                     {{$user->name}}, {{$user->email}}
                     <a href="{{ route("users.show", ['user' => $user]) }}">Ver detalles</a>
+                    <a href="{{ route("users.edit", ['user' => $user]) }}">Editar</a>
                 </li>
             @empty
                 <li>No hay usuarios registrados.</li>     
