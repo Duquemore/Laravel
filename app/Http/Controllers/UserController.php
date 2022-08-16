@@ -45,7 +45,7 @@ class UserController extends Controller{
     public function new(){
         $data = request()->validate([
             'name' => 'required',
-            'email' => 'required',
+            'email' => ['required','email', 'unique:users,email'],
             'password' => 'required',
         ], [
             'name.required' => 'El campo nombre es obligatorio',
@@ -53,19 +53,19 @@ class UserController extends Controller{
             'password.required' => 'El campo password es obligatorio',
         ]);
         
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+        ]);
+        return redirect()->route('users');
         // Another way
+        // $data2 = request()->all();
         // if (empty($data['name'])) {
         //     return redirect()->route('users.create')->withErrors([
         //         'name' => 'El campo es obligatorio'
         //     ]);
         // }
-        $data2 = request()->all();
-        User::create([
-            'name' => $data2['name'],
-            'email' => $data2['email'],
-            'password' => bcrypt($data2['password'])
-        ]);
-        return redirect()->route('users');
     }
 
 }
