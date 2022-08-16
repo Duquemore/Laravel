@@ -23,3 +23,5 @@
 @section('sidebar')
     @parent
 @endsection
+
+
